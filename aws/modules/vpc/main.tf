@@ -89,7 +89,8 @@ resource "aws_route_table" "my_route_table" {
 # }
 
 resource "aws_route_table_association" "my_route_table_assoc" {
-  for_each       = toset([for s in aws_subnet.my_subnet : s.id])
-  subnet_id      = each.value
+  count = length(aws_subnet.my_subnet.*.id)
+
+  subnet_id      = aws_subnet.my_subnet[count.index].id
   route_table_id = aws_route_table.my_route_table.id
 }
