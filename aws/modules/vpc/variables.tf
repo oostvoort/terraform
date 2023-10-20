@@ -20,17 +20,12 @@ variable "projectname" {
   default     = ""
 }
 
-variable "cidr" {
+variable "vpc_cidr" {
   description = "IP range for the VPC cidr block"
   default     = "10.0.0.0/16"
 }
 
-variable "public_subnets" {
-  description = "IP Ranges used for public subnets"
-  default     = ["10.0.10.0/24", "10.0.11.0/24"]
-}
-
-variable "private_subnets" {
-  description = "IP Ranges used for private subnets"
-  default     = ["10.0.20.0/24", "10.0.21.0/24"]
+variable "subnet_cidrs" {
+  description = "CIDRs for subnets"
+  default     = ["10.0.1.0/24", "10.0.2.0/24"]
 }

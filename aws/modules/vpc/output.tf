@@ -1,10 +1,15 @@
 output "vpc_id" {
-  value = module.my_vpc.vpc_id
+  value = aws_vpc.my_vpc.id
 }
 
-output "vpc_security_group_id" {
+output "subnet_ids" {
+  value = aws_subnet.my_subnet[*].id
+}
+
+output "security_group_id" {
   value = aws_security_group.my_security_group.id
-  description = "The ID of the VPC security group"
 }
 
-
+output "internet_gateway_id" {
+  value = aws_internet_gateway.my_gw.id
+}
