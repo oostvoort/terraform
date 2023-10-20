@@ -75,6 +75,6 @@ locals {
 }
 
 resource "aws_s3_bucket" "new" {
-  count  = length(try(data.aws_s3_bucket.existing.*.id, list(""))) == 0 ? 1 : 0
-  bucket = "my-bucket-name"
+  count  = var.create_new_bucket ? 1 : 0
+  bucket = "${var.projectname}-${var.environment}-statefile"
 }

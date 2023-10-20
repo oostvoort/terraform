@@ -35,3 +35,8 @@ variable "ingress_ports" {
   type        = list(number)
   default     = [3000, 8080, 5050]
 }
+
+variable "create_new_bucket" {
+  description = "Flag to create a new S3 bucket."
+  default     = true
+}
