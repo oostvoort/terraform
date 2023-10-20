@@ -33,9 +33,6 @@ variable "memory" {
   default     = "512"
 }
                     
-variable "execution_role_arn" {
-
-}
 
 variable "desired_count" {
   default = 1
