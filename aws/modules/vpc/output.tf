@@ -2,8 +2,9 @@ output "vpc_id" {
   value = aws_vpc.my_vpc.id
 }
 
-output "security_group_id" {
-  value = aws_security_group.my_sg.id
+output "vpc_security_group_id" {
+  value = aws_security_group.my_security_group.id
+  description = "The ID of the VPC security group"
 }
 
 output "subnet_ids" {
