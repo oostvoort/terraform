@@ -1,12 +1,12 @@
 variable "environment" {
   description = "Environment label, e.g., dev, staging, main"
   type        = string
-  default = ""
+  default     = ""
 }
 
 variable "aws_region" {
   description = "AWS region to deploy resources in."
-  default     = ""
+  default     = "us-east-1"
 }
 
 variable "projectname" {
