@@ -8,11 +8,11 @@ output "vpc_security_group_id" {
 }
 
 output "public_subnet_ids" {
-  value = module.public_subnets.*.id
+  value = module.my_vpc.public_subnets.*.id
   description = "The IDs of the created subnets"
 }
 
 output "private_subnet_ids" {
-  value = module.private_subnets.*.id
+  value = module.my_vpc.private_subnets.*.id
   description = "The IDs of the created subnets"
 }
