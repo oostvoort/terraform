@@ -16,3 +16,7 @@ output "private_subnet_ids" {
   value = module.my_vpc.private_subnets.*.id
   description = "The IDs of the created subnets"
 }
+
+output "vpc_cidr_block" {
+  value = module.my_vpc.cidr
+}
