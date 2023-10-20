@@ -69,3 +69,12 @@ resource "aws_route_table_association" "my_route_table_assoc" {
   route_table_id = aws_route_table.my_route_table.id
 
 }
+
+locals {
+  bucket_name = try(data.aws_s3_bucket.existing.id, aws_s3_bucket.new[0].id)
+}
+
+resource "aws_s3_bucket" "new" {
+  count  = length(try(data.aws_s3_bucket.existing.*.id, list(""))) == 0 ? 1 : 0
+  bucket = "my-bucket-name"
+}
