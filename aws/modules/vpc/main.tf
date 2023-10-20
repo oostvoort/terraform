@@ -30,7 +30,7 @@ module "my_vpc" {
 resource "aws_security_group" "my_security_group" {
   name        = "${var.projectname}-${var.environment}-sg"
   description = "${var.projectname}-${var.environment}-sg"
-  vpc_id      = aws_vpc.my_vpc.id
+  vpc_id      = module.my_vpc.id
 
   dynamic "ingress" {
     for_each = [
@@ -54,7 +54,7 @@ resource "aws_security_group" "my_security_group" {
 
 # Internet Gateway
 resource "aws_internet_gateway" "my_igw" {
-  vpc_id = aws_vpc.my_vpc.id
+  vpc_id = module.my_vpc.id
 
   tags = {
     Name        = "${var.projectname}-${var.environment}-igw"
@@ -64,13 +64,13 @@ resource "aws_internet_gateway" "my_igw" {
 
 # Attach Internet Gateway to VPC
 resource "aws_vpc_ipv4_cidr_block_association" "my_vpc_cidr" {
-  vpc_id     = aws_vpc.my_vpc.id
-  cidr_block = aws_vpc.my_vpc.cidr
+  vpc_id     = module.my_vpc.id
+  cidr_block = module.my_vpc.cidr
 }
 
 # Route Table pointing to the Internet Gateway
 resource "aws_route_table" "my_route_table" {
-  vpc_id = aws_vpc.my_vpc.id
+  vpc_id = module.my_vpc.id
 
   route {
     cidr_block = "0.0.0.0/0"

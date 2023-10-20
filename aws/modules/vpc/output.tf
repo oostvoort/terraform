@@ -1,5 +1,5 @@
 output "vpc_id" {
-  value = aws_vpc.my_vpc.id
+  value = module.my_vpc.id
 }
 
 output "vpc_security_group_id" {
@@ -7,7 +7,12 @@ output "vpc_security_group_id" {
   description = "The ID of the VPC security group"
 }
 
-output "subnet_ids" {
-  value = aws_subnet.my_subnet.*.id
+output "public_subnet_ids" {
+  value = module.public_subnets.*.id
+  description = "The IDs of the created subnets"
+}
+
+output "private_subnet_ids" {
+  value = module.private_subnets.*.id
   description = "The IDs of the created subnets"
 }
