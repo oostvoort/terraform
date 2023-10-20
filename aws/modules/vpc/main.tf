@@ -14,9 +14,10 @@ resource "aws_subnet" "my_subnet" {
   vpc_id = aws_vpc.my_vpc.id
   cidr_block = var.subnet_cidrs[count.index]
   availability_zone = element(
-    flatten([for az in data.aws_availability_zones.available.names : list(az, length(var.subnet_cidrs))]), 
+    flatten([for az in data.aws_availability_zones.available.names : [az] * length(var.subnet_cidrs)]), 
     count.index
   )
+
 
   tags = {
     Name = "${var.projectname}-${var.environment}-subnet-${count.index}"
