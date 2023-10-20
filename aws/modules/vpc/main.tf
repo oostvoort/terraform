@@ -25,7 +25,7 @@ resource "aws_subnet" "my_subnet" {
   }
 }
 # Security Group
-resource "aws_security_group" "my_sg" {
+resource "aws_security_group" "my_security_group" {
   name        = "${var.projectname}-${var.environment}-sg"
   description = "${var.projectname}-${var.environment}-sg"
   vpc_id      = aws_vpc.my_vpc.id
