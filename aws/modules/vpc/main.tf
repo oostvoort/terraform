@@ -6,15 +6,28 @@ resource "aws_vpc" "my_vpc" {
   cidr_block = "10.0.0.0/16"
  
   tags = {
-    Name        = "my-vpc"
+    Name        = "${var.projectname}-${var.environment}"
     Environment = var.environment
   }
   
 }
 
+resource "aws_subnet" "my_subnet" {
+  count                  = length(var.subnet_cidrs)
+  vpc_id                 = aws_vpc.my_vpc.id
+  cidr_block             = var.subnet_cidrs[count.index]
+  availability_zone      = element(data.aws_availability_zones.available.names, count.index)
+  map_public_ip_on_launch = true
+
+  tags = {
+    Name        = "${var.projectname}-${var.environment}-subnet-${count.index + 1}"
+    Environment = var.environment
+  }
+}
+
 resource "aws_security_group" "my_sg" {
-  name        = "my-sg"
-  description = "My Security Group"
+  name        = "${var.projectname}-${var.environment}-sg"
+  description = "${var.projectname}-${var.environment}-sg"
   vpc_id      = aws_vpc.my_vpc.id
 
   dynamic "ingress" {
@@ -32,7 +45,7 @@ resource "aws_security_group" "my_sg" {
   }
 
   tags = {
-    Name        = "my-sg"
+    Name        = "${var.projectname}-${var.environment}-sg"
     Environment = var.environment
   }
 }
