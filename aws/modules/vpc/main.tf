@@ -42,7 +42,7 @@ resource "aws_security_group" "my_security_group" {
   }
 }
 
-resource "aws_internet_gateway" "my_gw" {
+resource "aws_internet_gateway" "my_igw" {
   vpc_id = aws_vpc.my_vpc.id
 
   tags = {
