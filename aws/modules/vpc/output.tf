@@ -7,13 +7,4 @@ output "vpc_security_group_id" {
   description = "The ID of the VPC security group"
 }
 
-output "public_subnet_ids" {
-  value = module.my_vpc.public_subnets.*.id
-  description = "The IDs of the created subnets"
-}
-
-output "private_subnet_ids" {
-  value = module.my_vpc.private_subnets.*.id
-  description = "The IDs of the created subnets"
-}
 
