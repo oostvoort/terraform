@@ -32,8 +32,8 @@ resource "aws_ecs_service" "my_service" {
   desired_count   = var.desired_count
 
   network_configuration {
-    subnets = var.subnets
-    security_groups = [var.security_group]
+    subnets = var.vpc_subnets
+    security_groups = [var.vpc_security_group]
     assign_public_ip = true
   }
 }

@@ -16,7 +16,7 @@ variable "projectname" {
 }
 
 variable "registry" {
-  description = "The name of the project"
+  description = "The name of the registry"
   type        = string
   default     = ""
 }
@@ -33,15 +33,17 @@ variable "memory" {
   default     = "512"
 }
                     
-variable "execution_role_arn" {}
+variable "execution_role_arn" {
+
+}
 
 variable "desired_count" {
   default = 1
 }
-variable "subnets" {
+variable "vpc_subnets" {
   type = list(string)
 }
 
-variable "security_group" {
+variable "vpc_security_group" {
   type = string
 }
