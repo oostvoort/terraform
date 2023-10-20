@@ -83,7 +83,7 @@ resource "aws_route_table" "my_route_table" {
 
 # Associate Route Table with the Subnet
 resource "aws_route_table_association" "my_route_table_assoc" {
-  count          = length(var.subnet_cidrs)
+  count          = length(aws_subnet.my_subnet)
   subnet_id      = element(aws_subnet.my_subnet.*.id, count.index)
   route_table_id = aws_route_table.my_route_table.id
 }
