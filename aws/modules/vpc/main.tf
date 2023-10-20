@@ -11,7 +11,7 @@ resource "aws_vpc" "my_vpc" {
   }
   
 }
-
+# Subnet
 resource "aws_subnet" "my_subnet" {
   count                  = length(var.subnet_cidrs)
   vpc_id                 = aws_vpc.my_vpc.id
@@ -24,7 +24,7 @@ resource "aws_subnet" "my_subnet" {
     Environment = var.environment
   }
 }
-
+# Security Group
 resource "aws_security_group" "my_sg" {
   name        = "${var.projectname}-${var.environment}-sg"
   description = "${var.projectname}-${var.environment}-sg"
@@ -48,4 +48,42 @@ resource "aws_security_group" "my_sg" {
     Name        = "${var.projectname}-${var.environment}-sg"
     Environment = var.environment
   }
+}
+
+# Internet Gateway
+resource "aws_internet_gateway" "my_igw" {
+  vpc_id = aws_vpc.my_vpc.id
+
+  tags = {
+    Name        = "${var.projectname}-${var.environment}-igw"
+    Environment = var.environment
+  }
+}
+
+# Attach Internet Gateway to VPC
+resource "aws_vpc_ipv4_cidr_block_association" "my_vpc_cidr" {
+  vpc_id     = aws_vpc.my_vpc.id
+  cidr_block = aws_vpc.my_vpc.cidr_block
+}
+
+# Route Table pointing to the Internet Gateway
+resource "aws_route_table" "my_route_table" {
+  vpc_id = aws_vpc.my_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.my_igw.id
+  }
+
+  tags = {
+    Name        = "${var.projectname}-${var.environment}-route-table"
+    Environment = var.environment
+  }
+}
+
+# Associate Route Table with the Subnet
+resource "aws_route_table_association" "my_route_table_assoc" {
+  count          = length(var.subnet_cidrs)
+  subnet_id      = element(aws_subnet.my_subnet.*.id, count.index)
+  route_table_id = aws_route_table.my_route_table.id
 }
