@@ -11,5 +11,5 @@ output "security_group_id" {
 }
 
 output "internet_gateway_id" {
-  value = aws_internet_gateway.my_gw.id
+  value = aws_internet_gateway.my_igw.id
 }
