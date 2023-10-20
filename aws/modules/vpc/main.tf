@@ -1,15 +1,17 @@
 provider "aws" {
   region = var.aws_region
 }
+# VPC
+module "my_vpc" {
+  source = "terraform-aws-modules/vpc/aws"
+  name = "${var.projectname}-${var.environment}-vpc"
+  cidr = "10.0.0.0/16"
 
-resource "aws_vpc" "my_vpc" {
-  cidr_block = "10.0.0.0/16"
- 
-  tags = {
-    Name        = "${var.projectname}-${var.environment}"
-    Environment = var.environment
-  }
-  
+  manage_default_route_table = true
+  default_route_table_tags   = { Name = "${var.projectname}-${var.environment}-default" }
+  enable_dns_hostnames = true
+  enable_dns_support   = true
+
 }
 # Subnet
 resource "aws_subnet" "my_subnet" {
