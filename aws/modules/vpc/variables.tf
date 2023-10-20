@@ -29,3 +29,9 @@ variable "subnet_cidrs" {
   description = "CIDRs for subnets"
   default     = ["10.0.1.0/24", "10.0.2.0/24"]
 }
+
+variable "ingress_ports" {
+  description = "List of ports to allow in the security group"
+  type        = list(number)
+  default     = [3000, 8080, 5050]
+}
