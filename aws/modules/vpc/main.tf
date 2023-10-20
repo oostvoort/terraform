@@ -13,8 +13,8 @@ locals {
 # VPC
 module "my_vpc" {
   source = "terraform-aws-modules/vpc/aws"
-  name = "${var.projectname}-${var.environment}-vpc"
-  cidr = var.cidr
+  name             = "${var.projectname}-${var.environment}-vpc"
+  cidr             = var.cidr
   azs              = ["${local.region}a", "${local.region}b"]
   public_subnets   = var.public_subnets
   private_subnets  = var.private_subnets
@@ -65,7 +65,7 @@ resource "aws_internet_gateway" "my_igw" {
 # Attach Internet Gateway to VPC
 resource "aws_vpc_ipv4_cidr_block_association" "my_vpc_cidr" {
   vpc_id     = module.my_vpc.vpc_id
-  cidr_block = module.my_vpc.cidr
+  cidr_block = module.my_vpc.cidr_block
 }
 
 # Route Table pointing to the Internet Gateway

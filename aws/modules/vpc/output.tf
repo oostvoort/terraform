@@ -1,5 +1,5 @@
 output "vpc_id" {
-  value = module.my_vpc.id
+  value = module.my_vpc.vpc_id
 }
 
 output "vpc_security_group_id" {
