@@ -65,7 +65,7 @@ resource "aws_internet_gateway" "my_igw" {
 # Attach Internet Gateway to VPC
 resource "aws_vpc_ipv4_cidr_block_association" "my_vpc_cidr" {
   vpc_id     = module.my_vpc.vpc_id
-  cidr_block = module.my_vpc.vpc_cidr
+  cidr_block = var.cidr 
 }
 
 # Route Table pointing to the Internet Gateway
