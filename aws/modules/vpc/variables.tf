@@ -39,5 +39,5 @@ variable "ingress_ports" {
 variable "use_existing_bucket" {
   description = "Use existing S3 bucket"
   type        = bool
-  default     = true
+  default     = false
 }
