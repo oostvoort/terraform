@@ -20,7 +20,6 @@ variable "cidr_block" {
 
 variable "subnet_cidrs" {
   description = "CIDRs for subnets"
-  type        = string
 }
 
 variable "ingress_ports" {
