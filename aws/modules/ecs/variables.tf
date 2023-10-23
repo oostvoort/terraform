@@ -37,10 +37,19 @@ variable "memory" {
 variable "desired_count" {
   default = 1
 }
+
 variable "vpc_subnets" {
-  type = list(string)
+  description = "List of VPC Subnet IDs"
+  type        = list(string)
+  default     = []
 }
 
 variable "vpc_security_group" {
-  type = string
+  description = "VPC Security Group ID"
+  type        = string
+}
+
+variable "vpc_id" {
+  description = "VPC ID"
+  type        = string
 }

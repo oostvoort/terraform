@@ -79,10 +79,11 @@ resource "aws_route_table_association" "my_route_table_assoc" {
 }
 
 locals {
-  bucket_name = try(data.aws_s3_bucket.existing.id, aws_s3_bucket.new[0].id)
+  bucket_name = try(data.aws_s3_bucket.existing[0].id, aws_s3_bucket.new[0].id)
+
 }
 
 resource "aws_s3_bucket" "new" {
-  count  = var.create_new_bucket ? 1 : 0
+  count  = 0
   bucket = "${var.projectname}-${var.environment}-statefile"
 }

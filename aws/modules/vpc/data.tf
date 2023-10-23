@@ -3,6 +3,6 @@ data "aws_availability_zones" "available" {
 }
 
 data "aws_s3_bucket" "existing" {
-  count  = var.create_new_bucket ? 0 : 1
+  count  = 0 
   bucket = "${var.projectname}-${var.environment}-statefile"
 }
