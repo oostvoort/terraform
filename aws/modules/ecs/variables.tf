@@ -54,3 +54,9 @@ variable containerport {
   type        = number
 
 }
+
+variable "port_mappings" {
+  description = "List of port mappings"
+  type        = list(object({ containerPort = number, hostPort = number }))
+  #default     = [{ containerPort = 80, hostPort = 80 }]
+}
