@@ -36,7 +36,7 @@ variable "ingress_ports" {
   default     = [3000, 8080, 5050]
 }
 
-variable "create_new_bucket" {
-  description = "Flag to create a new S3 bucket."
-  default     = true
+variable "use_existing_bucket" {
+  description = "Use existing S3 bucket"
+  type        = bool
 }
