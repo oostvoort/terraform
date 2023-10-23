@@ -1,18 +1,16 @@
 variable "environment" {
   description = "Environment label, e.g., dev, staging, main"
   type        = string
-  default     = ""
 }
 
 variable "aws_region" {
   description = "AWS region to deploy resources in."
-  default     = "us-east-1"
+  type        = string
 }
 
 variable "projectname" {
   description = "The name of the project"
   type        = string
-  default     = ""
 }
 
 variable "registry" {
@@ -23,13 +21,11 @@ variable "registry" {
 variable "cpu" {
   description = "The amount of cpu assigned to fargate container"
   type        = number
-  default     = "256"
 }
 
 variable "memory" {
   description = "The amount of memory assigned to fargate container"
   type        = number
-  default     = "512"
 }
                     
 
@@ -57,5 +53,4 @@ variable containerport {
 variable "port_mappings" {
   description = "List of port mappings"
   type        = list(object({ containerPort = number, hostPort = number }))
-  #default     = [{ containerPort = 80, hostPort = 80 }]
 }
