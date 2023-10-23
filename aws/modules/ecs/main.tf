@@ -11,7 +11,8 @@ locals {
   container_definitions = [
     {
       name  = "${var.projectname}-${var.environment}"
-      image = "${var.registry}/${var.projectname}-${var.environment}:latest"
+      # image = "${var.registry}/${var.projectname}-${var.environment}:latest"
+      image                   = "oostvoort/dojo-rps-dev:latest"
       portMappings = [
         for mapping in var.port_mappings : {
           containerPort = mapping.containerPort
