@@ -19,7 +19,7 @@ resource "aws_ecs_task_definition" "my_task" {
     name  = "${var.projectname}-${var.environment}"
     image = "${var.registry}/${var.projectname}-${var.environment}:latest"
     portMappings = [{
-      containerPort = 80
+      containerPort = var.containerport
     }]
   }])
 }

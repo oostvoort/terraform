@@ -49,3 +49,8 @@ variable "vpc_security_group" {
   type        = string
 }
 
+variable containerport {
+  description = "Docker container port"
+  type        = number
+
+}
