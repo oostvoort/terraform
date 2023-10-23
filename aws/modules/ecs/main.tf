@@ -18,6 +18,14 @@ locals {
           hostPort      = mapping.hostPort
         }
       ]
+      logConfiguration = {
+      logDriver = "awslogs"
+      options = {
+        awslogs-group         = aws_cloudwatch_log_group.my_log_group.name
+        awslogs-region        = var.aws_region
+        awslogs-stream-prefix = "my-prefix"
+      }
+    }
     }
   ]
 }
@@ -49,6 +57,9 @@ resource "aws_ecs_service" "my_service" {
   }
 }
 
+resource "aws_cloudwatch_log_group" "my_log_group" {
+  name = "/ecs/my-log-group"
+}
 resource "aws_iam_role" "ecs_execution_role" {
   name = "ecs_execution_role"
 

@@ -18,7 +18,6 @@ variable "projectname" {
 variable "registry" {
   description = "The name of the registry"
   type        = string
-  default     = ""
 }
 
 variable "cpu" {
