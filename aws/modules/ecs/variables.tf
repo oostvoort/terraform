@@ -49,7 +49,3 @@ variable "vpc_security_group" {
   type        = string
 }
 
-variable "vpc_id" {
-  description = "VPC ID"
-  type        = string
-}
