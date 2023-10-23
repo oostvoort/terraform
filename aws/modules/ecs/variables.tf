@@ -18,6 +18,12 @@ variable "registry" {
   type        = string
 }
 
+variable "imageversion" {
+  description = "The name of the registry"
+  type        = string
+}
+
+
 variable "cpu" {
   description = "The amount of cpu assigned to fargate container"
   type        = number
@@ -30,7 +36,7 @@ variable "memory" {
                     
 
 variable "desired_count" {
-  default = 1
+  type        = number
 }
 
 variable "vpc_subnets" {
@@ -54,3 +60,4 @@ variable "port_mappings" {
   description = "List of port mappings"
   type        = list(object({ containerPort = number, hostPort = number }))
 }
+

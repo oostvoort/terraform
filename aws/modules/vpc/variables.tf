@@ -1,43 +1,34 @@
-variable "orgname" {
-  description = "Name of the organzation that owns this resource"
-  default     = "oostvoort"
-}
-
 variable "environment" {
   description = "Environment label, e.g., dev, staging, main"
   type        = string
-  default     = ""
 }
 
 variable "aws_region" {
   description = "AWS region to deploy resources in."
-  default     = "us-east-1"
+  type        = string
 }
 
 variable "projectname" {
   description = "The name of the project"
   type        = string
-  default     = ""
 }
 
-variable "vpc_cidr" {
+variable "cidr_block" {
   description = "IP range for the VPC cidr block"
-  default     = "10.0.0.0/16"
+  type        = string
 }
 
 variable "subnet_cidrs" {
   description = "CIDRs for subnets"
-  default     = ["10.0.1.0/24", "10.0.2.0/24"]
+  type        = string
 }
 
 variable "ingress_ports" {
   description = "List of ports to allow in the security group"
   type        = list(number)
-  default     = [3000, 8080, 5050]
 }
 
 variable "use_existing_bucket" {
   description = "Use existing S3 bucket"
   type        = bool
-  default     = false
 }
