@@ -19,7 +19,7 @@ variable "registry" {
 }
 
 variable "imageversion" {
-  description = "The name of the registry"
+  description = "The version of docker image"
   type        = string
 }
 
@@ -48,12 +48,6 @@ variable "vpc_subnets" {
 variable "vpc_security_group" {
   description = "VPC Security Group ID"
   type        = string
-}
-
-variable containerport {
-  description = "Docker container port"
-  type        = number
-
 }
 
 variable "port_mappings" {
